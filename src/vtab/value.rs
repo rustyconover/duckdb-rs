@@ -1,4 +1,4 @@
-use crate::ffi::{duckdb_destroy_value, duckdb_get_int64, duckdb_get_varchar, duckdb_value};
+use crate::ffi::{duckdb_destroy_value, duckdb_get_int64, duckdb_get_timestamp, duckdb_get_varchar, duckdb_value};
 use std::{ffi::CString, fmt};
 
 /// The Value object holds a single arbitrary value of any type that can be
@@ -29,6 +29,10 @@ impl Value {
     /// Returns the value as a int64
     pub fn to_int64(&self) -> i64 {
         unsafe { duckdb_get_int64(self.ptr) }
+    }
+
+    pub fn to_int64_timestamp(&self) -> i64 {
+        unsafe { duckdb_get_timestamp(self.ptr) }
     }
 }
 
